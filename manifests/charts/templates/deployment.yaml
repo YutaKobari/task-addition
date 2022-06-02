@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "manifests.fullname" . }}
+  labels:
+    {{- include "manifests.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "manifests.selectorLabels" . | nindent 6 }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        {{- include "manifests.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if hasKey .Values "env" }}
+          env:
+          {{- toYaml .Values.env | nindent 10 }}
+          {{- end }}
+
+          {{- if hasKey .Values "secretRef" }}
+          envFrom:
+          {{- range .Values.secretRef }}
+          - secretRef:
+              name: {{ . }}
+          {{- end -}}
+          {{- end }}
+          {{- if hasKey .Values "readinessProbe" }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          {{- end }}
+          ports:
+          - containerPort:  {{ .Values.containerPort }}

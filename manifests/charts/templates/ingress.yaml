@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "manifests.fullname" . }}
+  labels:
+    {{- include "manifests.labels" . | nindent 4 }}
+  annotations:
+    kubernetes.io/ingress.class: azure/application-gateway
+    cert-manager.io/cluster-issuer: {{ .Values.tlsIssuer }}
+spec:
+  tls:
+  - hosts:
+    - {{ .Values.domain }}
+    secretName: tls-secret-{{- .Values.domain | replace "." "-" }}
+  rules:
+  - host: {{ .Values.domain }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ include "manifests.fullname" . }}
+            port:
+              number: 80

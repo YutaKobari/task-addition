@@ -1,0 +1,23 @@
+# Dotfiles
+.github
+.gitignore
+.vscode
+.env*
+.eslintrc.js
+.prettierignore
+.prettierrc.js
+.jest.config.js
+
+# Test
+test/
+coverage
+
+
+# modules
+node_modules
+
+# manifests
+manifests
+
+# README
+README.md
