@@ -139,16 +139,6 @@ const httpTrigger: AzureFunction = async function (
     auth: notionApiAuthKey.value,
   });
 
-  context.log(
-    slackAppSigningSecret,
-    ' ',
-    slackAppToken,
-    ' ',
-    notionApiAuthKey,
-    ' ',
-    notionDatabaseId
-  );
-
   const body: Body = makeBody(req);
   context.log('catch the task post: ', body);
   const properties = await makeProperties(body, slack);
