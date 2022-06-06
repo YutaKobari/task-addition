@@ -1,0 +1,10 @@
+{
+  "IsEncrypted": true,
+  "Values": {
+    "AZURE_TENANT_ID": "CfDJ8GPh/Y1tBv5BkPa0+1Wl/xqffhi4DpVz4cc0Dx3y2zrh/lGV4TsgG9Hp3mybLOns12NGLBoQVEs+3uIZdgqf0lql1EMn9KCb+exzmk6nw2+qcoB9f00QQLMMWeM63vgjdRMrqmEwDqE57V4OI36t6/FvMtLwAGjb/RZKEph5iV2q",
+    "AZURE_CLIENT_ID": "CfDJ8GPh/Y1tBv5BkPa0+1Wl/xp4TtMmfi0zpjff5SBmkX9H2+OsCM4TFv2u9bpld0YSI3jidaFgU+2vedmWmMuhdDbm0LdFyJ6sPyHNgRmCrl5l0x6V+ox3USq+eOEBfPp/LPbSVsNx1QfEeUMVMHfft20zDeBiT/8IMqfzlXiDRyoC",
+    "AZURE_CLIENT_SECRET": "CfDJ8GPh/Y1tBv5BkPa0+1Wl/xroRlwRq5vnTwiKQOdZtmWi9bczdnKBvuZhZ8ef71moLLIirQikywjSrfOtaRHNoOfI8CVmMEATEI1RQCveHb2K7ejOLDYFsqIARNxE4XQnZAwtYG7PCP2f1Wp68yLs1V4Bs2NdKQMICrgtXgLivTHE",
+    "KEY_VAULT_NAME": "CfDJ8GPh/Y1tBv5BkPa0+1Wl/xpVlQdDluNLGzcTw7vG04sVnduNDY4gGPgTSh/RBoZ0oyjiLuaPyvP3PR76YPocnLnfLDWYCsb/QsfbzX4GRNoj03e7h4koeyLS5WfHPcrSnA=="
+  },
+  "ConnectionStrings": {}
+}
