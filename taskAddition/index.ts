@@ -35,7 +35,7 @@ const PROPERTIES = {
 const MESSAGE_TEXT_REGEXP =
   /【.+】\s+(.+)\n【.+】\s+(.+)\n【.+】\s+(.+)\n【.+】\s*(.*)/;
 
-const keyVaultName = process.env['KEY_VAULT_NAME'];
+const keyVaultName = process.env['KEY_VAULT_NAME'] ?? '';
 const KeyVaultUri = `https://${keyVaultName}.vault.azure.net`;
 const credential = new DefaultAzureCredential();
 const secretClient = new SecretClient(KeyVaultUri, credential);
@@ -119,6 +119,20 @@ const makeProperties = async (body: Body, slack: App) => {
   return properties;
 };
 
+const createNotionPage = async (
+  properties: any,
+  notion: Client,
+  databaseId: string
+): Promise<string> => {
+  const notionPage = await notion.pages.create({
+    parent: {
+      database_id: databaseId,
+    },
+    properties: properties,
+  });
+  return (notionPage as any).url ?? '';
+};
+
 const httpTrigger: AzureFunction = async function (
   context: Context,
   req: HttpRequest
@@ -142,17 +156,15 @@ const httpTrigger: AzureFunction = async function (
   const body: Body = makeBody(req);
   context.log('catch the task post: ', body);
   const properties = await makeProperties(body, slack);
-  await notion.pages.create({
-    parent: {
-      database_id: notionDatabaseId.value ?? '',
-    },
-    properties: properties,
-  });
+  const notionPageUrl = await createNotionPage(
+    properties,
+    notion,
+    notionDatabaseId.value ?? ''
+  );
   await slack.client.chat.postMessage({
     channel: body.channel_id ?? '',
-    text: `<@${body.user_id}> Succeeded in adding a task to NOTION !`,
+    text: `<@${body.user_id ?? ''}> Succeeded in adding a task to <${notionPageUrl}|this NOTION page> !`,
   });
-
   context.res = {};
 };
 
