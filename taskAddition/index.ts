@@ -100,7 +100,7 @@ const makeProperties = async (body: Body, slack: App) => {
       ],
     },
     [PROPERTIES.STATUS]: {
-      select: {
+      status: {
         name: '未着手',
       },
     },
