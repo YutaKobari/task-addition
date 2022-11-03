@@ -27,8 +27,6 @@
   },
   "homepage": "https://github.com/wevnal/template_nodejs_repository#readme",
   "devDependencies": {
-    "@azure/functions": "^3.2.0",
-    "@types/jest": "^27.0.1",
     "@types/node": "^16.7.2",
     "@typescript-eslint/eslint-plugin": "^4.29.3",
     "@typescript-eslint/parser": "^4.29.3",
@@ -60,6 +58,7 @@
     "yarn": "1.22.17"
   },
   "dependencies": {
+    "@azure/functions": "^3.2.0",
     "@azure/identity": "^2.0.4",
     "@azure/keyvault-secrets": "^4.4.0",
     "@notionhq/client": "^1.0.4",
