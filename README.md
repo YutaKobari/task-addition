@@ -1,37 +1,23 @@
-# template_nodejs_repository
+# 概要
+特定のSlackチャンネルで指定フォーマットでタスク投稿すると、NOTIONにタスク情報を追加するプログラム（azure function）
 
-## 含まれる機能
+![概略図](images/task_addition.png)
 
-- ESLint / Prettier / jest など、基本的な TypeScript 開発環境
-- 本番環境用 Docker image をビルドするための　 Dockerfile
-- PR 時に実行される Lint / Test を行う CI パイプライン
-- CI パイプライン中で AKS Kubernetes Cluster に PR デプロイができるジョブテンプレート
+# 開発方法
+- azure functionsの環境構築（vscodeだと楽）を行い、func host start で起動
+- ngrok http 7071を実行
+- slack app directoryのOutgoing WebHooksのページに行き、URL欄に{ngrokのURL}/api/taskAdditionを設定
+- タスク投稿時に作成されたNOTIONリンクがSlackチャンネルに届きます。また、NOTIONにはSlackスレッドのリンクが貼られますので、相互に遷移可能です
 
-## 開発を始める前に
-
-### 動作環境
-
-- Node.js v16
-- Yarn v1.22.17
-
-### 前提
-
-- Volta がインストールされている
-
-Node.js のバージョン固定のため、Volta の導入をおすすめします。
-
-- VS Code の拡張を設定する
-
-開発環境には Visual Studio Code (VSCode) をおすすめします。
-
-本リポジトリには VSCode 向け推奨プラグインが定義されており、以下の手順でインストールできます。
-[Managing Extensions in Visual Studio Code](https://code.visualstudio.com/docs/editor/extension-marketplace#_workspace-recommended-extensions)
-
-### 開発を始める
+# 投稿例
 
 ```
-$ git clone git@github.com:wevnal/<YOUR_REPOSITORY>.git
-$ cd <YOUR_REPOSITORY>
-$ yarn install
-$ code .
+【種別】
+　payment-api
+【課題 / issue】
+　220602_株式会社hoge複製ボット開発依頼
+【URL】
+　https://wevnal.backlog.jp/view/hogehoge
+【完了予定日】
+　2022/06/08
 ```
